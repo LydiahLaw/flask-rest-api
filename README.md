@@ -28,6 +28,7 @@ source venv/Scripts/activate
 pip install -r requirements.txt
 python app.py
 ```
+## API Testing (Postman)
 
 <img width="1366" height="721" alt="2" src="https://github.com/user-attachments/assets/82720fd1-8fb6-4763-a1ca-60312c4bb870" />
 <img width="1287" height="717" alt="3" src="https://github.com/user-attachments/assets/fe187a3d-3f5f-49bd-be0a-fed45d14d15b" />
