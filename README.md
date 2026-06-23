@@ -109,7 +109,13 @@ sudo systemctl restart nginx
 
 ## Live Demo (EC2 Deployment)
 
-[ADD YOUR EC2 SCREENSHOTS HERE - replace localhost screenshots with EC2 IP screenshots]
+<img width="1366" height="734" alt="8" src="https://github.com/user-attachments/assets/7f014bc2-158a-4d60-8e18-da4a8e3642f5" />
+<img width="1366" height="768" alt="9" src="https://github.com/user-attachments/assets/dfe7a18d-88c5-484d-8de1-45f661c6241a" />
+<img width="1366" height="768" alt="10" src="https://github.com/user-attachments/assets/c81148ab-e68e-42be-aa92-3d1ddee35760" />
+<img width="1366" height="725" alt="browser ip" src="https://github.com/user-attachments/assets/addf9552-e0b3-40c3-acf0-d596329d91b8" />
+
+
+
 
 ## API Testing (Postman - Local)
 
