@@ -9,13 +9,13 @@ on:
 jobs:
   test:
     name: Lint and test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.13"
           cache: pip
@@ -35,7 +35,7 @@ jobs:
     needs: test
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Build image
         run: docker build -t flask-rest-api:${{ github.sha }} .
