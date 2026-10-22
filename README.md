@@ -1,6 +1,8 @@
 # Flask REST API on AWS EC2
 
-A task management REST API built with Python/Flask, deployed on AWS EC2 with Nginx and Gunicorn.
+![CI](https://github.com/LydiahLaw/flask-rest-api/actions/workflows/ci.yml/badge.svg)
+
+A task management REST API built with Python/Flask, deployed on AWS EC2 with Nginx and Gunicorn. Every push is linted, tested and built as a Docker image by a GitHub Actions pipeline.
 
 ## Deployment Stack
 - Flask app served by Gunicorn (4 workers)
@@ -28,6 +30,33 @@ A task management REST API built with Python/Flask, deployed on AWS EC2 with Ngi
 - Nginx (reverse proxy)
 - Systemd (process management)
 - AWS EC2 Ubuntu 24.04 t2.micro
+- Docker (container image)
+- GitHub Actions (CI)
+- pytest and flake8 (testing and linting)
+
+## CI Pipeline
+
+The workflow in `.github/workflows/ci.yml` runs on every push and pull request to `main`, on a pinned `ubuntu-24.04` runner.
+
+| Job | What it does |
+|-----|--------------|
+| Lint and test | Installs Python 3.13, checks code style with flake8, runs 8 pytest tests covering every endpoint and error case |
+| Build and smoke-test Docker image | Runs only if tests pass. Builds the image, starts the container and checks that `/health` responds |
+
+## Run the Tests
+```bash
+pip install -r requirements-dev.txt
+flake8 app.py tests --max-line-length=100
+pytest -v
+```
+
+## Run with Docker
+```bash
+docker build -t flask-rest-api .
+docker run -d -p 5000:5000 flask-rest-api
+curl http://localhost:5000/health
+```
+The image uses `python:3.13-slim`, serves the app with Gunicorn (4 workers) and runs as a non-root user.
 
 ## How to Run Locally
 ```bash
@@ -107,7 +136,10 @@ sudo nginx -t
 sudo systemctl restart nginx
 ```
 
-## Live Demo (EC2 Deployment)
+## EC2 Deployment (Screenshots)
+
+The EC2 instance is no longer running; these screenshots show the deployment working.
+
 
 <img width="1366" height="734" alt="8" src="https://github.com/user-attachments/assets/7f014bc2-158a-4d60-8e18-da4a8e3642f5" />
 <img width="1366" height="768" alt="9" src="https://github.com/user-attachments/assets/dfe7a18d-88c5-484d-8de1-45f661c6241a" />
@@ -133,3 +165,7 @@ sudo systemctl restart nginx
 - REST API design with proper HTTP status codes
 - Testing APIs with Postman
 - AWS EC2 provisioning and security group configuration
+- Writing automated tests with pytest and isolating tests that share in-memory state
+- Building a CI pipeline with GitHub Actions, with jobs that depend on each other
+- Containerising a Python app with Docker and smoke-testing it in CI
+- Pinning runner and dependency versions so builds are reproducible
