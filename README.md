@@ -43,6 +43,9 @@ The workflow in `.github/workflows/ci.yml` runs on every push and pull request t
 | Lint and test | Installs Python 3.13, checks code style with flake8, runs 8 pytest tests covering every endpoint and error case |
 | Build and smoke-test Docker image | Runs only if tests pass. Builds the image, starts the container and checks that `/health` responds |
 
+<img width="1366" height="673" alt="github actions ci" src="https://github.com/user-attachments/assets/fbb1577a-79bf-40d9-892b-80a96b9363a1" />
+
+
 ## Run the Tests
 ```bash
 pip install -r requirements-dev.txt
